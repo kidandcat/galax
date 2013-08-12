@@ -1,0 +1,19 @@
+/* 
+    Document   : 404
+    Created on : 23-jul-2013, 12:20:47
+    Author     : BlueKing
+    Description:
+        Stylesheet 404 webpage.
+*/
+
+root { 
+    display: block;
+}
+
+body {
+    background-color: black;
+    background-image: url("/images/notfound.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+}

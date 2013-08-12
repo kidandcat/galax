@@ -1,0 +1,112 @@
+html, body {
+  height: 100%;
+  background-image: url("../images/galax.png");
+  background-position-x: 50%;
+  background-position-y: 40%;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  background-repeat: no-repeat;
+}
+
+.boton {
+    top:50%;
+    left:50%;
+    postion: fixed;
+    z-index: 200;
+}
+
+.user{
+    position: fixed;
+    top: 50%;
+    right: 50%;
+}
+.sub{
+    margin-top: 60px;
+    left:50%;
+    position: fixed;
+    top: 50%;
+    margin-left: auto;
+}
+.sub2{
+    margin-top: 90px;
+    left:50%;
+    position: fixed;
+    top: 50%;
+    margin-left: auto;
+}
+.register{
+    color: blue;
+    text-decoration: underline;
+    position: fixed;
+    left:50%;
+    margin-left: auto;
+    top: 95%;
+}
+.detalles{
+    margin-top: 90px;
+    left:50%;
+    position: fixed;
+    top: 50%;
+    margin-left: auto;
+}
+.detalles2{
+    margin-top: 130px;
+    left:50%;
+    position: fixed;
+    top: 50%;
+    margin-left: auto;
+}
+.pass{
+    margin-top: 30px;
+    position: fixed;
+    top: 50%;
+    right: 50%;
+}
+.pass2{
+    margin-top: 60px;
+    position: fixed;
+    top: 50%;
+    right: 50%;
+}
+.input{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}
+.input2{
+    margin-top: 30px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}
+.input3{
+    margin-top: 60px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}
+#map-canvas, #map_canvas {
+  height: 100%;
+}
+
+@media print {
+  html, body {
+    height: auto;
+  }
+
+  #map-canvas, #map_canvas {
+    height: 650px;
+  }
+}
+
+#panel {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  margin-left: -180px;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+}
