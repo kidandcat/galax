@@ -4,6 +4,7 @@ var isIE = false;
 //	Creamos una variable para el objeto XMLHttpRequest
 var req,req2,req3,req4,req5;
 var user;
+var l_icon = '';
 
 function checkSubmit(e)
 {
@@ -48,13 +49,17 @@ function cargaXML(url,register) {
 	}
         user = $('#user').val();
         var password = $('#pass').val();
-        var passwordRepeat = $('#pass2').val();
-        if(password === passwordRepeat){
+        var icon = $('#pass2').val();
+        if(icon === ''){
+            icon = 'images/icon.png';
+        }else{
+            l_icon = icon;
+        }
 	//	Usuario inteligente...
 	if (window.XMLHttpRequest) {
 		req = new XMLHttpRequest();
 		req.onreadystatechange = processReqChange;
-		req.open("GET", url+"?user="+user+"&password="+password+"&passwordRepeat="+passwordRepeat, true);
+		req.open("GET", url+"?user="+user+"&password="+password+"&icon="+icon, true);
 		req.send();
 	//	...y usuario de Internet Explorer Windows
 	} else if (window.ActiveXObject) {
@@ -62,13 +67,10 @@ function cargaXML(url,register) {
 		req = new ActiveXObject("Microsoft.XMLHTTP");
 		if (req) {
 			req.onreadystatechange = processReqChange;
-			req.open("GET", url+"?user="+user+"&password="+password+"&passwordRepeat="+passwordRepeat, true);
+			req.open("GET", url+"?user="+user+"&password="+password+"&icon="+icon, true);
                         req.send();
 		}
 	}
-        }else{
-            alert("Password do not match");
-        }
     }
 }
 
@@ -84,6 +86,7 @@ function processReqChange(){
 
 function procesaRespuesta(res){
     if(res === 'allow'){
+        carga_icono('icon_load.php',user);
         carga_lista('list.php',user);
         initialize(user);
     }else if(res === 'notAllow'){
@@ -95,7 +98,6 @@ function procesaRespuesta(res){
         alert('Error: please, if the error persists contact the administrator.');
         document.location.href = document.location.href;
     }else{
-        
     }
 }
 
@@ -106,8 +108,8 @@ function register(){
     document.write("<input name='pass' class='input2' id='pass' type='password'>");
     document.write("<div class='user'><b>Nickname:</b></div>");
     document.write("<div class='pass'><b>Password:</b></div>");
-    document.write("<input name='passRepeat' class='input3' id='pass2' type='password'>");
-    document.write("<div class='pass2'><b>Repeat password:</b></div>");
+    document.write("<input name='passRepeat' class='input3' id='pass2' type='text'>");
+    document.write("<div class='pass2'><b>Icon:</b></div>");
     document.write("<input type='submit' class='sub2' onclick='cargaXML(\"register.php\",true)'>");
     document.write("<div class='detalles2' id='detalles'></div>");
     document.getElementById('user').focus();
@@ -247,5 +249,35 @@ function processListUpdate(){
 	}
 }
 
+
+
+function carga_icono(url,user){
+    if(url===''){
+		return;
+	}
+	//	Usuario inteligente...
+	if (window.XMLHttpRequest) {
+		req6 = new XMLHttpRequest();
+		req6.onreadystatechange = processIcon;
+		req6.open("GET", url+"?user="+user, true);
+		req6.send();
+	//	...y usuario de Internet Explorer Windows
+	} else if (window.ActiveXObject) {
+		isIE = true;
+		req6 = new ActiveXObject("Microsoft.XMLHTTP");
+		if (req6) {
+			req6.onreadystatechange = processIcon;
+			req6.open("GET", url+"?user="+user, true);
+                        req6.send();
+		}
+	}
+}
+
+function processIcon(){
+	if(req6.readyState === 4){
+            icons = req6.responseText.split(";");
+	} else {
+	}
+}
 
 

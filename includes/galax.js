@@ -7,21 +7,21 @@ var users2;
 var users_aux = '';
 var ready;
 var infowindows;
-
-
+var icons = new Array();
 
 
 function initialize(user) {
-    
     document.onkeypress=function(){
         users.forEach(function(ev){alert(ev);})
     };
     users_aux = '';
     markers = new Array();
     users = new Array();
+    icons = new Array();
     users2 = new Array();
     infowindows = new Array();
-  l_user = user;
+    l_user = user;
+    carga_icono('icon_load.php',user);
   var mapOptions = {
     zoom: 14,
     mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -90,6 +90,8 @@ function handleNoGeolocation(errorFlag) {
 function user_mark(nick,pos){
     var isCreated = false;
     var markk;
+    var icon;
+    icon = get_icon(nick);
     users2.forEach(function(mark){
         if(mark === nick){
             isCreated = true;
@@ -107,7 +109,7 @@ function user_mark(nick,pos){
         clickable:true,
         animation: google.maps.Animation.DROP,
         position: pos,
-        icon: 'images/icon.png'
+        icon: icon
       });
       marker.addListener("click",function(){user_list(nick,pos);});
       markers.push(marker);
@@ -182,7 +184,6 @@ function set_users(){       //must be recoded for ask only about the near users 
 
 function user_list_fromDB(){        //guitarra medio especialidad blablabla 
     var list = l_list.split(";");
-    alert(l_list);
     var list2 = list[0].split(" ").unique();
     var list3 = list[1].split(" ").unique();
     
@@ -208,6 +209,28 @@ function add_new_option(){
     list_update('new_option.php',l_user,input);
     infowindows.forEach(function(e){e.close();});
 }
+
+
+
+
+
+
+
+function get_icon(user){
+    var icon;
+    icons.forEach(function(e){
+        var c = new Array();
+        c = e.split(" ");
+        if(c[0] == user){
+            icon = c[1];
+        }
+    })
+    
+    return icon;
+}
+
+
+
 
 
 
