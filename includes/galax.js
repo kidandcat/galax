@@ -145,8 +145,10 @@ function change_user_list(){
     
     var posicion = document.getElementById('select').options.selectedIndex; //posicion
     var sel = document.getElementById('select').options[posicion].text; //valor
+    var posicion2 = document.getElementById('select2').options.selectedIndex; //posicion
+    var sel2 = document.getElementById('select2').options[posicion2].text; //valor
     if(sel !== null){
-        list_update('set_list.php',l_user,sel);
+        list_update('set_list.php',l_user,sel+" "+sel2);
         infowindows.forEach(function(e){e.close();});
     }
 }
@@ -178,15 +180,24 @@ function set_users(){       //must be recoded for ask only about the near users 
 
 
 
-function user_list_fromDB(){        //guitarra: medio; especialidad: blablabla; 
-    var list = l_list.split(" ");
-    list2 = list.unique();
+function user_list_fromDB(){        //guitarra medio especialidad blablabla 
+    var list = l_list.split(";");
+    alert(l_list);
+    var list2 = list[0].split(" ").unique();
+    var list3 = list[1].split(" ").unique();
+    
+    
     var before_list = "<select id='select' name='list'>";
+    var before_list2 = "<select id='select2' name='list'>";
     var options = '';
+    var options2 = '';
     for(var i=0;i<list2.length;i++){
         options = options + ("<option value='"+i+"' SELECTED>"+list2[i]+"</option>");
     }
-    l_list = before_list+options+ "</select><br><button onclick='change_user_list()'><b>Change<b></button><button onclick='add_new_option()'><b>Add<b></button>Only Admins can add new options.";
+    for(var i=0;i<list3.length;i++){
+        options2 = options2 + ("<option value='"+i+"' SELECTED>"+list3[i]+"</option>");
+    }
+    l_list = before_list+options+"</select>"+before_list2+options2+ "</select><br><button onclick='change_user_list()'><b>Change<b></button><button onclick='add_new_option()'><b>Add<b></button>Only Admins can add new options.";
     return 0;
 }
 
