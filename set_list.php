@@ -1,5 +1,6 @@
 <?php
-$user = $_GET["user"];
+session_start();
+$user = $_SESSION["user"];
 $data = $_GET["data"];
 
 

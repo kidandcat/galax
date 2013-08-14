@@ -150,7 +150,7 @@ function change_user_list(){
     var posicion2 = document.getElementById('select2').options.selectedIndex; //posicion
     var sel2 = document.getElementById('select2').options[posicion2].text; //valor
     if(sel !== null){
-        list_update('set_list.php',l_user,sel+" "+sel2);
+        list_update('set_list.php',sel+" "+sel2);
         infowindows.forEach(function(e){e.close();});
     }
 }

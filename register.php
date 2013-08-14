@@ -13,6 +13,6 @@ $time = date("Y-n-j H:i:s");
 if($icon == '' || $icon == null)
     $icon = 'images/icon.png';
 
-$va = mysql_query("INSERT INTO main VALUES ('$user','','$pass2','0','0','0','$icon','$time')");
+$va = mysql_query("INSERT INTO main VALUES ('$user','undefined undefined','$pass2','0','0','0','$icon','$time')");
 echo 'registered'.$va;
 ?>

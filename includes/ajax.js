@@ -239,7 +239,6 @@ function check(){
 
 function checkRes(){
 	if(req7.readyState === 4){  //must do all same methods alert about the correct or incorrect done of the action-------------------------------------------
-            alert(req7.responseText);
     } else {
 	}
 }
@@ -255,7 +254,7 @@ function list_update(url,data){
 	if (window.XMLHttpRequest) {
 		req5 = new XMLHttpRequest();
 		req5.onreadystatechange = processListUpdate;
-		req5.open("GET", url+"?user="+user+"&data="+data, true);
+		req5.open("GET", url+"?data="+data, true);
 		req5.send();
 	//	...y usuario de Internet Explorer Windows
 	} else if (window.ActiveXObject) {
@@ -263,7 +262,7 @@ function list_update(url,data){
 		req5 = new ActiveXObject("Microsoft.XMLHTTP");
 		if (req5) {
 			req5.onreadystatechange = processListUpdate;
-			req5.open("GET", url+"?user="+user+"&data="+data, true);
+			req5.open("GET", url+"?data="+data, true);
                         req5.send();
 		}
 	}
