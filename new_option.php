@@ -1,12 +1,15 @@
 <?php
-$user = $_GET["user"];
+session_start();
+$user = $_SESSION["user"];
 $data = $_GET["data"];
 
 
 $link = mysql_connect("localhost", "root", "akatsuki"); 
 mysql_select_db("galax", $link); 
 
-
+$data2 = explode(";",$data);
+$data3 = $data2[0];
+$data4 = $data2[1];
 
 $result = mysql_query("SELECT
 main.`user`,
@@ -21,7 +24,7 @@ while($val = mysql_fetch_array($result)){
         $resu = $val[1];
 }
 if($resu > 0){
-    $res = mysql_query("INSERT INTO options VALUES ('$data','')");
+    $res = mysql_query("INSERT INTO options VALUES ('$data3','$data4')");
 }
 echo $res;
 ?>

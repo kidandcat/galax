@@ -182,23 +182,24 @@ function set_users(){       //must be recoded for ask only about the near users 
 
 
 
-function user_list_fromDB(){        //guitarra medio especialidad blablabla 
-    var list = l_list.split(";");
-    var list2 = list[0].split(" ").unique();
-    var list3 = list[1].split(" ").unique();
+function user_list_fromDB(){        
+        var list = l_list.split(";");
+        var list2 = list[0].split(" ").unique();
+        var list3 = list[1].split(" ").unique();
     
-    
-    var before_list = "<select id='select' name='list'>";
-    var before_list2 = "<select id='select2' name='list'>";
-    var options = '';
-    var options2 = '';
-    for(var i=0;i<list2.length;i++){
-        options = options + ("<option value='"+i+"' SELECTED>"+list2[i]+"</option>");
-    }
-    for(var i=0;i<list3.length;i++){
-        options2 = options2 + ("<option value='"+i+"' SELECTED>"+list3[i]+"</option>");
-    }
-    l_list = before_list+options+"</select>"+before_list2+options2+ "</select><br><button onclick='change_user_list()'><b>Change<b></button><button onclick='add_new_option()'><b>Add<b></button>Only Admins can add new options.";
+        var before_list = "Hability:<select id='select' name='list'>";
+        var before_list2 = "Specialty:<select id='select2' name='list'>";
+        var options = '';
+        var options2 = '';
+        for(var i=0;i<list2.length;i++){
+            if(list2[i] != '' && list2[i] != null)
+                options = options + ("<option value='"+i+"' SELECTED>"+list2[i]+"</option>");
+        }
+        for(var i=0;i<list3.length;i++){
+            if(list3[i] != '' && list3[i] != null)
+                options2 = options2 + ("<option value='"+i+"' SELECTED>"+list3[i]+"</option>");
+        }
+        l_list = before_list+options+"</select>"+before_list2+options2+ "</select><br><button onclick='change_user_list()'><b>Change<b></button><button onclick='add_new_option()'><b>Add<b></button>Only Admins can add new options.";
     return 0;
 }
 
@@ -206,7 +207,7 @@ function user_list_fromDB(){        //guitarra medio especialidad blablabla
 
 function add_new_option(){
     var input = prompt('Enter new option', '');
-    list_update('new_option.php',l_user,input);
+    list_update('new_option.php',input);
     infowindows.forEach(function(e){e.close();});
 }
 
@@ -225,7 +226,6 @@ function get_icon(user){
             icon = c[1];
         }
     })
-    
     return icon;
 }
 

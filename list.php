@@ -1,6 +1,7 @@
 <?php
+session_start();
+
 $user = $_GET["user"];
-$isLocal = $_GET["isLocal"];
 
 
 $link = mysql_connect("localhost", "root", "akatsuki");
@@ -39,7 +40,7 @@ while($val3 = mysql_fetch_array($result3)){
         $resu3 = $resu3.$val3[0]." ";
 }
 if($resu != false){
-    if($isLocal == 'true'){
+    if($user == $_SESSION["user"]){
         $res = explode(" ",$resu);
         echo $resu2.$res[0].";".$resu3.$res[1];
         //echo "asd qwe ert;qwe zxc asd";
@@ -47,6 +48,11 @@ if($resu != false){
         echo $resu;
     }
 }else{
+    if($user == $_SESSION["user"]){
+        echo $resu2.";".$resu3;
+        //echo "asd qwe ert;qwe zxc asd";
+    }else{
     echo 'Error loading user list.';
+    }
 }
 ?>

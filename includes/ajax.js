@@ -86,7 +86,7 @@ function processReqChange(){
 
 function procesaRespuesta(res){
     if(res === 'allow'){
-        carga_icono('icon_load.php',user);
+        carga_icono('icon_load.php');
         carga_lista('list.php',user);
         initialize(user);
     }else if(res === 'notAllow'){
@@ -103,6 +103,7 @@ function procesaRespuesta(res){
 
 
 function register(){
+    document.write("<?php session_start(); ?>");
     document.write("<link href='default.css' rel='stylesheet'>");
     document.write("<input name='user' class='input' id='user' type='text'>");
     document.write("<input name='pass' class='input2' id='pass' type='password'>");
@@ -117,17 +118,14 @@ function register(){
 
 
 function carga_lista(url,user){
-    var isLocal = 'false';
     if(url===''){
 		return;
 	}
-        if(user == l_user)
-            isLocal = 'true';
 	//	Usuario inteligente...
 	if (window.XMLHttpRequest) {
 		req2 = new XMLHttpRequest();
 		req2.onreadystatechange = processList;
-		req2.open("GET", url+"?user="+user+"&isLocal="+isLocal, true);
+		req2.open("GET", url+"?user="+user, true);
 		req2.send();
 	//	...y usuario de Internet Explorer Windows
 	} else if (window.ActiveXObject) {
@@ -135,7 +133,7 @@ function carga_lista(url,user){
 		req2 = new ActiveXObject("Microsoft.XMLHTTP");
 		if (req2) {
 			req2.onreadystatechange = processList;
-			req2.open("GET", url+"?user="+user+"&isLocal="+isLocal, true);
+			req2.open("GET", url+"?user="+user, true);
                         req2.send();
 		}
 	}
@@ -219,7 +217,7 @@ function processPos(){
 
 
 
-function list_update(url,user,data){
+function list_update(url,data){
     if(url===''){
 		return;
 	}
@@ -245,13 +243,14 @@ function list_update(url,user,data){
 
 function processListUpdate(){
 	if(req5.readyState === 4){  //must do all same methods alert about the correct or incorrect done of the action-------------------------------------------
-        } else {
+    } else {
 	}
 }
 
 
 
-function carga_icono(url,user){
+function carga_icono(url){
+
     if(url===''){
 		return;
 	}
@@ -259,7 +258,7 @@ function carga_icono(url,user){
 	if (window.XMLHttpRequest) {
 		req6 = new XMLHttpRequest();
 		req6.onreadystatechange = processIcon;
-		req6.open("GET", url+"?user="+user, true);
+		req6.open("GET", url, true);
 		req6.send();
 	//	...y usuario de Internet Explorer Windows
 	} else if (window.ActiveXObject) {
@@ -267,7 +266,7 @@ function carga_icono(url,user){
 		req6 = new ActiveXObject("Microsoft.XMLHTTP");
 		if (req6) {
 			req6.onreadystatechange = processIcon;
-			req6.open("GET", url+"?user="+user, true);
+			req6.open("GET", url, true);
                         req6.send();
 		}
 	}

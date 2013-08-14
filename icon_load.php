@@ -1,5 +1,5 @@
 <?php
-$user = $_GET["user"];
+session_start();
 
 
 $link = mysql_connect("localhost", "root", "akatsuki");
