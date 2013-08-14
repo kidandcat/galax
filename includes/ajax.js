@@ -2,7 +2,7 @@
 var isIE = false;
 
 //	Creamos una variable para el objeto XMLHttpRequest
-var req,req2,req3,req4,req5;
+var req,req2,req3,req4,req5,req6,req7;
 var user;
 var l_icon = '';
 
@@ -88,6 +88,7 @@ function procesaRespuesta(res){
     if(res === 'allow'){
         carga_icono('icon_load.php');
         carga_lista('list.php',user);
+        setInterval(check(),"120000");
         initialize(user);
     }else if(res === 'notAllow'){
         detalles.innerHTML = 'Wrong user/password.';
@@ -214,6 +215,34 @@ function processPos(){
 	}
 }
 
+
+
+function check(){
+	//	Usuario inteligente...
+	if (window.XMLHttpRequest) {
+		req7 = new XMLHttpRequest();
+		req7.onreadystatechange = checkRes;
+		req7.open("GET", 'checksession.php', true);
+		req7.send();
+	//	...y usuario de Internet Explorer Windows
+	} else if (window.ActiveXObject) {
+		isIE = true;
+		req7 = new ActiveXObject("Microsoft.XMLHTTP");
+		if (req7) {
+			req7.onreadystatechange = checkRes;
+			req7.open("GET", 'checksession.php', true);
+                        req7.send();
+		}
+	}
+}
+
+
+function checkRes(){
+	if(req7.readyState === 4){  //must do all same methods alert about the correct or incorrect done of the action-------------------------------------------
+            alert(req7.responseText);
+    } else {
+	}
+}
 
 
 

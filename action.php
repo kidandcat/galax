@@ -21,6 +21,7 @@ while($val = mysql_fetch_array($result)){
 }
 
 if($isUser){
+    $_SESSION["ultimoAcceso"] = date("Y-n-j H:i:s"); 
     $_SESSION['user'] = $user;
     echo 'allow';
 }else{

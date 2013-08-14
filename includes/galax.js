@@ -206,7 +206,7 @@ function user_list_fromDB(){
 
 
 function add_new_option(){
-    var input = prompt('Enter new option', '');
+    var input = prompt('Enter new option', 'option;specialty <- for only specialty= ;specialty');
     list_update('new_option.php',input);
     infowindows.forEach(function(e){e.close();});
 }
