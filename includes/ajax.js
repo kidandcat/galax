@@ -59,7 +59,7 @@ function cargaXML(url,register) {
         img.src = l_icon;
         img.onerror = function(){
             var iconn = 'images/icon.png';
-            alert("Error loading icon");
+            detalles.innerHTML = detalles.innerHTML + "<br>Error loading icon, using default"
 	//	Usuario inteligente...
 	if (window.XMLHttpRequest) {
 		req = new XMLHttpRequest();
@@ -78,6 +78,16 @@ function cargaXML(url,register) {
 	}
         };
         img.onload = function(){
+         var tam = '';
+            if(this.height > 40){
+                icon = 'images/icon.png';
+            }else if(this.width > 40){
+                icon = 'images/icon.png';
+            }
+                
+            if(tam != '')
+                alert("Image +"+tam+"+ too long, using default icon");
+            
 	//	Usuario inteligente...
 	if (window.XMLHttpRequest) {
 		req = new XMLHttpRequest();
@@ -116,14 +126,15 @@ function procesaRespuesta(res){
         setInterval("check()","30000");
         initialize(user);
     }else if(res === 'notAllow'){
-        detalles.innerHTML = 'Wrong user/password.';
+        detalles.innerHTML = '<br>Wrong user/password.';
     }else if(res === 'registered1'){
-        alert('Registered succesfully');
-        document.location.href = document.location.href;
+        detalles.innerHTML = detalles.innerHTML + '<br>Registered succesfully';
+        setTimeout(function(){document.location.href = document.location.href},1500);
     }else if(res === 'registered'){
+        detalles.innerHTML = '<br>User already exists.';
+    }else{
         alert('Error: please, if the error persists contact the administrator.');
         document.location.href = document.location.href;
-    }else{
     }
 }
 

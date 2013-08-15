@@ -44,7 +44,6 @@ function initialize(user) {
     // Browser doesn't support Geolocation
     handleNoGeolocation(false);
   }
-  set_users();
   update_pos();
   var intevalo = setInterval('update_pos()',30000); //5 min = 300000
   //clearInterval(intervalo);
@@ -188,7 +187,7 @@ function user_list_fromDB(){
         var list3 = list[1].split(" ").unique();
     
         var before_list = "Skill:<select id='select' name='list'>";
-        var before_list2 = "Specialty:<select id='select2' name='list'>";
+        var before_list2 = "Level:<select id='select2' name='list'>";
         var options = '';
         var options2 = '';
         for(var i=0;i<list2.length;i++){
