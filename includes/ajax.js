@@ -88,7 +88,8 @@ function procesaRespuesta(res){
     if(res === 'allow'){
         carga_icono('icon_load.php');
         carga_lista('list.php',user);
-        setInterval(check(),"120000");
+        check();
+        setInterval("check()","30000");
         initialize(user);
     }else if(res === 'notAllow'){
         detalles.innerHTML = 'Wrong user/password.';

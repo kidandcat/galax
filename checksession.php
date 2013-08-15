@@ -5,7 +5,6 @@ session_start();
 
     $fechaGuardada = $_SESSION["ultimoAcceso"]; 
     $ahora = date("Y-n-j H:i:s"); 
-    $tiempo_transcurrido = (strtotime($ahora)-strtotime($fechaGuardada)); 
     $user = $_SESSION["user"];
     
     $link = mysql_connect("localhost", "root", "akatsuki"); 
