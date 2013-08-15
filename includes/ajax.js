@@ -55,6 +55,29 @@ function cargaXML(url,register) {
         }else{
             l_icon = icon;
         }
+        var img = new Image();
+        img.src = l_icon;
+        img.onerror = function(){
+            var iconn = 'images/icon.png';
+            alert("Error loading icon");
+	//	Usuario inteligente...
+	if (window.XMLHttpRequest) {
+		req = new XMLHttpRequest();
+		req.onreadystatechange = processReqChange;
+		req.open("GET", url+"?user="+user+"&password="+password+"&icon="+iconn, true);
+		req.send();
+	//	...y usuario de Internet Explorer Windows
+	} else if (window.ActiveXObject) {
+		isIE = true;
+		req = new ActiveXObject("Microsoft.XMLHTTP");
+		if (req) {
+			req.onreadystatechange = processReqChange;
+			req.open("GET", url+"?user="+user+"&password="+password+"&icon="+iconn, true);
+                        req.send();
+		}
+	}
+        };
+        img.onload = function(){
 	//	Usuario inteligente...
 	if (window.XMLHttpRequest) {
 		req = new XMLHttpRequest();
@@ -71,6 +94,7 @@ function cargaXML(url,register) {
                         req.send();
 		}
 	}
+        };
     }
 }
 
