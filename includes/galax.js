@@ -187,7 +187,7 @@ function user_list_fromDB(){
         var list2 = list[0].split(" ").unique();
         var list3 = list[1].split(" ").unique();
     
-        var before_list = "Hability:<select id='select' name='list'>";
+        var before_list = "Skill:<select id='select' name='list'>";
         var before_list2 = "Specialty:<select id='select2' name='list'>";
         var options = '';
         var options2 = '';
