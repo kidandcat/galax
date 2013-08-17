@@ -11,9 +11,6 @@ var icons = new Array();
 
 
 function initialize(user) {
-    document.onkeypress=function(){
-        users.forEach(function(ev){alert(ev);})
-    };
     users_aux = '';
     markers = new Array();
     users = new Array();
@@ -133,7 +130,7 @@ function user_list(user,pos){
         var inf = new google.maps.InfoWindow({
             map: map,
             position: pos,
-            content: title_before + user + title_after + l_list
+            content: title_before + user + title_after + l_list + "<button onclick='chat(\""+user+"\")'><b>Chat<b></button>"
         });
         infowindows.push(inf);
         clearTimeout(interval2);
@@ -229,6 +226,20 @@ function get_icon(user){
 }
 
 
+
+
+function chat(target){
+    if(target != '' || target != null){
+        if($('#abs').css("display") == 'none'){ 
+            $.post("chat.php",{name: l_user, enter: target});
+            $('#abs').css("display","block");
+        }
+        else{
+            $.get("chat.php",{logout: true});
+            $('#abs').css("display","none");
+        }
+    }
+}
 
 
 

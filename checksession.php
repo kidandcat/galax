@@ -3,7 +3,7 @@
 session_start(); 
 
 
-    $fechaGuardada = $_SESSION["ultimoAcceso"]; 
+
     $ahora = date("Y-n-j H:i:s"); 
     $user = $_SESSION["user"];
     

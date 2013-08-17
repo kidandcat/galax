@@ -2,7 +2,7 @@
 var isIE = false;
 
 //	Creamos una variable para el objeto XMLHttpRequest
-var req,req2,req3,req4,req5,req6,req7;
+var req,req2,req3,req4,req5,req6,req7,req8;
 var user;
 var l_icon = '';
 
@@ -125,6 +125,7 @@ function procesaRespuesta(res){
         check();
         setInterval("check()","30000");
         initialize(user);
+        int = setInterval("check_chat()","3000");
     }else if(res === 'notAllow'){
         detalles.innerHTML = '<br>Wrong user/password.';
     }else if(res === 'registered1'){
@@ -280,6 +281,37 @@ function checkRes(){
 }
 
 
+function check_chat(){
+	//	Usuario inteligente...
+	if (window.XMLHttpRequest) {
+		req8 = new XMLHttpRequest();
+		req8.onreadystatechange = checkRes2;
+		req8.open("GET", 'checkchat.php', true);
+		req8.send();
+	//	...y usuario de Internet Explorer Windows
+	} else if (window.ActiveXObject) {
+		isIE = true;
+		req8 = new ActiveXObject("Microsoft.XMLHTTP");
+		if (req8) {
+			req8.onreadystatechange = checkRes2;
+			req8.open("GET", 'checkchat.php', true);
+                        req8.send();
+		}
+	}
+}
+
+
+function checkRes2(){
+	if(req8.readyState === 4){  //must do all same methods alert about the correct or incorrect done of the action-------------------------------------------
+            if(req8.responseText == 'false'){
+            }else{
+                new_msg_from(req8.responseText);
+            }
+    } else {
+	}
+}
+
+
 
 function list_update(url,data){
     if(url===''){
@@ -344,3 +376,6 @@ function processIcon(){
 }
 
 
+function new_msg_from(ev){
+    alert("new msg from: " + ev);
+}
