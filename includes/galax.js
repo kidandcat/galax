@@ -10,7 +10,7 @@ var infowindows;
 var icons = new Array();
 
 
-function initialize(user, adminLv) {
+function initialize(user) {
     users_aux = '';
     markers = new Array();
     users = new Array();
