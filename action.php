@@ -24,6 +24,20 @@ while($val = mysql_fetch_array($result)){
 }
 
 if($isUser){
+    $res = mysql_query("SELECT
+    main.`user`,
+    main.admin
+    FROM
+    main
+    WHERE
+    main.`user` = '$user'
+    ");
+    
+    while($value = mysql_fetch_array($res)){
+        $adminLv = $value[1];
+    }
+    
+    $_SESSION['admin'] = $adminLv;
     $_SESSION["ultimoAcceso"] = date("Y-n-j H:i:s"); 
     $_SESSION['user'] = $user;
     $_SESSION['logged'] = true;

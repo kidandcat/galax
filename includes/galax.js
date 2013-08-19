@@ -10,7 +10,7 @@ var infowindows;
 var icons = new Array();
 
 
-function initialize(user) {
+function initialize(user, adminLv) {
     users_aux = '';
     markers = new Array();
     users = new Array();
@@ -195,7 +195,10 @@ function user_list_fromDB(){
             if(list3[i] != '' && list3[i] != null)
                 options2 = options2 + ("<option value='"+i+"' SELECTED>"+list3[i]+"</option>");
         }
+    if(parseInt(admin) > 0)   
         l_list = before_list+options+"</select>"+before_list2+options2+ "</select><br><button onclick='change_user_list()'><b>Change<b></button><button onclick='add_new_option()'><b>Add<b></button>Only Admins can add new options.";
+    else
+        l_list = before_list+options+"</select>"+before_list2+options2+ "</select><br><button onclick='change_user_list()'><b>Change<b></button>";
     return 0;
 }
 

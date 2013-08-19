@@ -2,9 +2,10 @@
 var isIE = false;
 
 //	Creamos una variable para el objeto XMLHttpRequest
-var req,req2,req3,req4,req5,req6,req7,req8;
+var req,req2,req3,req4,req5,req6,req7,req8,req9;
 var user;
 var l_icon = '';
+var admin;
 
 function checkSubmit(e)
 {
@@ -19,7 +20,6 @@ function checkSubmit(e)
 //	Vease que la sintaxis varia dependiendo de si usamos un navegador decente
 //	o Internet Explorer
 function cargaXML(url,register) {
-    alert(user);
     if(!register){
 	//	Primero vamos a ver si la URL es una URL :)
 	if(url===''){
@@ -130,8 +130,8 @@ function procesaRespuesta(res){
         carga_lista('list.php',user);
         check();
         setInterval("check()","10000");
+        carga_admin(user);
         initialize(user);
-        
     }else if(res === 'notAllow'){
         detalles.innerHTML = '<br>Wrong user/password.';
     }else if(res === 'registered1'){
@@ -385,4 +385,34 @@ function processIcon(){
 
 function new_msg_from(ev){
     alert("new msg from: " + ev);
+}
+
+
+
+
+
+function carga_admin(user){
+	//	Usuario inteligente...
+	if (window.XMLHttpRequest) {
+		req9 = new XMLHttpRequest();
+		req9.onreadystatechange = processAdmin;
+		req9.open("GET", 'admin.php'+"?user="+user, true);
+		req9.send();
+	//	...y usuario de Internet Explorer Windows
+	} else if (window.ActiveXObject) {
+		isIE = true;
+		req9 = new ActiveXObject("Microsoft.XMLHTTP");
+		if (req9) {
+			req9.onreadystatechange = processAdmin;
+			req9.open("GET", 'admin.php'+"?user="+user, true);
+                        req9.send();
+		}
+	}
+}
+
+function processAdmin(){
+	if(req9.readyState === 4){
+                admin = req9.responseText;
+	} else {
+	}
 }

@@ -95,7 +95,12 @@ if(isset($_GET['logout'])){
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script type="text/javascript">  
 // jQuery Document  
-var l_log = '<?php echo $_SESSION['log'] ?>';
+var l_log = '<?php 
+            if(isset($_SESSION['log']))
+                echo $_SESSION['log'];
+            else
+                echo "logs/log_default.html";
+        ?>';
 
 $(document).ready(function(){  
     loadLog();
@@ -136,7 +141,12 @@ function loadLog(){
     <body onload="$('#usermsg').focus()">
 <div id="wrapper">  
     <div id="menu">  
-        <p class="welcome">Welcome, <b><?php echo $_SESSION['name']; ?></b></p>  
+        <p class="welcome">Welcome, <b><?php 
+        if(isset($_SESSION['name']))
+            echo $_SESSION['name']; 
+        else
+            echo "Anon";
+        ?></b></p>  
         <div style="clear:both"></div>  
     </div>      
     <div id="chatbox"><?php  
