@@ -15,8 +15,24 @@ if(isset($_SESSION['name'])){
     mysql_query("UPDATE chats SET last_check_second_user='$now' WHERE user='$target' AND target='$user'");
     
     
-    $fp = fopen($_SESSION["log"], 'a');  
-    fwrite($fp, "<div class='msgln'>(".date("g:i A").") <b>".$_SESSION['name']."</b>: ".stripslashes(htmlspecialchars($text))."<br></div>");  
-    fclose($fp);  
+    
+    
+    
+    
+    
+    //http://www.forosdelweb.com/f18/fopen-anadir-principio-873176/
+      
+    //guardo en una variable el nuevo texto
+    $a = "<div class='msgln'>(".date("g:i A").") <b>".$_SESSION['name']."</b>: ".stripslashes(htmlspecialchars($text))."<br></div>";
+    //guardo en otra variable el contenido actual
+    $get = file_get_contents($_SESSION["log"]);
+    //creo una variable con el nuevo+actual
+    $t=$a.$get;
+    //borro el texto
+    unlink($_SESSION["log"]);
+    //creo un nuevo archivo y escribo el nuevo texto xD
+    $control = fopen($_SESSION["log"],"c");
+    $write = fwrite($control, $t);
+    fclose($control);  
 }  
 ?> 

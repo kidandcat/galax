@@ -21,14 +21,16 @@ html, body {
     position: fixed;
     bottom: 5px;
     right: 5px;
-    width: 600px;
-    height: 500px;
+    width: 265px;
+    height: 290px;
     z-index: 1000;
 }
 
 .frame {
-    width: 600px;
-    height: 500px;
+    bottom: 5px;
+    right: 5px;
+    width: 265px;
+    height: 290px;
 }
 
 .user{

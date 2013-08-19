@@ -63,18 +63,10 @@ target = '$_user_insert'
 
 if(isset($_GET['logout'])){   
       
-    //guardo en una variable el nuevo texto
-    $a = "<div class='msgln'>(".date("g:i A").") <b>".$_SESSION['name']."</b>: ".stripslashes(htmlspecialchars($text))."<br></div>";
-    //guardo en otra variable el contenido actual
-    $get = file_get_contents($_SESSION["log"]);
-    //creo una variable con el nuevo+actual
-    $t=$a.$get;
-    //borro el texto
-    unlink($_SESSION["log"]);
-    //creo un nuevo archivo y escribo el nuevo texto xD
-    $control = fopen($_SESSION["log"],"c");
-    $write = fwrite($control, $t);
-    fclose($control);  
+    //Simple exit message  
+    $fp = fopen($_SESSION["log"], 'a'); 
+    fwrite($fp, "<div class='msgln'><i>User ". $_SESSION['name'] ." has left the chat session.</i><br></div>");  
+    fclose($fp);  
 }  
 ?>
 
@@ -91,7 +83,7 @@ if(isset($_GET['logout'])){
         </script>
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="chat.css" rel="stylesheet">
+        <link href="chat_test.css" rel="stylesheet">
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script type="text/javascript">  
 // jQuery Document  

@@ -125,9 +125,9 @@ function procesaRespuesta(res){
         carga_icono('icon_load.php');
         carga_lista('list.php',user);
         check();
-        setInterval("check()","30000");
+        setInterval("check()","10000");
         initialize(user);
-        int = setInterval("check_chat()","3000");
+        
     }else if(res === 'notAllow'){
         detalles.innerHTML = '<br>Wrong user/password.';
     }else if(res === 'registered1'){
@@ -257,6 +257,7 @@ function processPos(){
 
 
 function check(){
+    check_chat();
 	//	Usuario inteligente...
 	if (window.XMLHttpRequest) {
 		req7 = new XMLHttpRequest();

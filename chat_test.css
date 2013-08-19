@@ -10,7 +10,7 @@ body {
     font:12px arial;  
     color: #222;  
     text-align:center;  
-    padding:5px; }  
+    padding:35px; }  
    
 form, p, span {  
     margin:0;  
@@ -26,9 +26,9 @@ a {
    
 #wrapper, #loginform {  
     margin:0 auto;  
-    padding-bottom:5px;  
+    padding-bottom:25px;  
     background:#EBF4FB;  
-    width:250px;  
+    width:504px;  
     border:1px solid #ACD8F0; }  
    
 #loginform { padding-top:18px; }  
@@ -41,13 +41,13 @@ a {
     margin-bottom:25px;  
     padding:10px;  
     background:#fff;  
-    height:135px;  
-    width:215px;  
+    height:270px;  
+    width:430px;  
     border:1px solid #ACD8F0;  
     overflow:auto; }  
    
 #usermsg {  
-    width:185px;  
+    width:395px;  
     border:1px solid #ACD8F0; }  
    
 #submit { width: 60px; }  

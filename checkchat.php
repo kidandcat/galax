@@ -29,23 +29,21 @@ WHERE
 target = '$_user_insert'
 ", $link);
     
+    $now = date("Y-n-j H:i:s"); 
+    
     $new_msg = 'false';
     if($val1 = mysql_fetch_array($result1)){
         if((strtotime($val1[3]) < strtotime($val1[2]))){
             $new_msg = $val1[1];
-            $wat = 1;
-        }
+       }
     }else if($val2 = mysql_fetch_array($result2)){
         if((strtotime($val2[4]) < strtotime($val2[2]))){
             $new_msg = $val2[0];
-            $wat = 2;
         }
     }
-        $target = $new_msg;
-        $now = date("Y-n-j H:i:s"); 
-        mysql_query("UPDATE chats SET last_check_first_user='$now' WHERE user='$_user_insert' AND target='$target'");
-        mysql_query("UPDATE chats SET last_check_second_user='$now' WHERE user='$target' AND target='$_user_insert'");
-
-  
+        mysql_query("UPDATE chats SET last_check_first_user='$now' WHERE user='$_user_insert'");
+        mysql_query("UPDATE chats SET last_check_second_user='$now' WHERE target='$_user_insert'");
+    
+        
     echo $new_msg;
 ?>
