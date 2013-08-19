@@ -81,8 +81,10 @@ function cargaXML(url,register) {
          var tam = '';
             if(this.height > 40){
                 icon = 'images/icon.png';
+                tam = 'height';
             }else if(this.width > 40){
                 icon = 'images/icon.png';
+                tam = 'width';
             }
                 
             if(tam != '')

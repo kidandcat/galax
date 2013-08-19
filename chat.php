@@ -44,13 +44,13 @@ target = '$_user_insert'
 
     
 
-    $_SESSION["log"] = "log_default_default.html";
+    $_SESSION["log"] = "logs/log_default_default.html";
     if($val1 = mysql_fetch_array($result1)){
         $_SESSION["log"] = $val1[2];
     }else if($val2 = mysql_fetch_array($result2)){
         $_SESSION["log"] = $val2[2];
     }else{
-        $logg = "log_".$_SESSION["user"]."_".$_SESSION["enter"].".html";
+        $logg = "logs/log_".$_SESSION["user"]."_".$_SESSION["enter"].".html";
         $_SESSION["log"] = $logg;
         $_user_insert = $_SESSION["user"];
         $_enter_insert = $_SESSION["enter"];
@@ -64,7 +64,7 @@ target = '$_user_insert'
 if(isset($_GET['logout'])){   
       
     //Simple exit message  
-    $fp = fopen("log_".$_SESSION['name']."_".$_SESSION['enter'].".html", 'a');  
+    $fp = fopen($_SESSION["log"], 'a'); 
     fwrite($fp, "<div class='msgln'><i>User ". $_SESSION['name'] ." has left the chat session.</i><br></div>");  
     fclose($fp);  
 }  
@@ -73,6 +73,14 @@ if(isset($_GET['logout'])){
 
 <html>
     <head>
+        <script>
+        function clicked(){     
+    var clientmsg = $("#usermsg").val();  
+    $.post("post.php", {text: clientmsg});
+    $("#usermsg").attr("value", "");  
+    return false;  
+};  
+        </script>
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="chat.css" rel="stylesheet">
@@ -89,15 +97,10 @@ $(document).ready(function(){
         var exit = confirm("Are you sure you want to end the session?");  
         if(exit==true){window.location = 'chat.php?logout=true';}        
     });  
-});  
-
+  
+});
 //If user submits the form  
-function clicked(){     
-    var clientmsg = $("#usermsg").val();  
-    $.post("post.php", {text: clientmsg});
-    $("#usermsg").attr("value", "");  
-    return false;  
-};  
+
 
 //Load the file containing the chat log  
 function loadLog(){       
