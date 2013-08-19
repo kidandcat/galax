@@ -19,13 +19,17 @@ function checkSubmit(e)
 //	Vease que la sintaxis varia dependiendo de si usamos un navegador decente
 //	o Internet Explorer
 function cargaXML(url,register) {
+    alert(user);
     if(!register){
 	//	Primero vamos a ver si la URL es una URL :)
 	if(url===''){
 		return;
 	}
-        user = $('#user').val();
         var password = $('#pass').val();
+        var temp_user = $('#user').val();
+        if(user == '' || user == null){
+            user = $('#user').val();
+        }
 	//	Usuario inteligente...
 	if (window.XMLHttpRequest) {
 		req = new XMLHttpRequest();

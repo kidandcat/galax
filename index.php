@@ -9,6 +9,21 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJ1tPLFgaGlgsXzopYcUbQtmCwoTOkP38&v=3.exp&sensor=true"></script>
     <script type="text/javascript" src="/includes/galax.js"></script>
     <script type="text/javascript" src="/includes/ajax.js"></script>
+    <script type="text/javascript">
+        var get_session = "<?php 
+        session_start(); 
+        if(isset($_SESSION['user'])){
+            echo $_SESSION['user'];
+            
+        }else{
+            echo 'false';
+        }
+        ?>";
+        if(get_session != 'false'){
+            user = get_session;
+            cargaXML('action.php',false);
+        }
+    </script>
   </head>
   <body onload="document.getElementById('user').focus()">
       
