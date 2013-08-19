@@ -26,7 +26,6 @@ function cargaXML(url,register) {
 		return;
 	}
         var password = $('#pass').val();
-        var temp_user = $('#user').val();
         if(user == '' || user == null){
             user = $('#user').val();
         }
@@ -147,7 +146,7 @@ function procesaRespuesta(res){
 
 
 function register(){
-    document.write("<?php session_start(); ?>");  //sobra? creo que si
+    //document.write("<?php session_start(); ?>");  //sobra? creo que si -kidandcat
     document.write("<link href='default.css' rel='stylesheet'>");
     document.write("<input name='user' class='input' id='user' type='text'>");
     document.write("<input name='pass' class='input2' id='pass' type='password'>");
