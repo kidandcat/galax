@@ -35,10 +35,12 @@
       <input id="submit" type="submit" class="sub" onclick="cargaXML('action.php',false);">
       <div class="detalles" id="detalles"></div>
       <div id="reg" class="register" onclick="register();">Register</div>
+      <div id="logout" class="logout" onclick="logout();">Logout</div>
     <div id="map-canvas">
     </div>
       <div id="abs" class="abs">
           <iframe src="chat.php" class="frame"></iframe>
      </div>
+      
   </body>
 </html>

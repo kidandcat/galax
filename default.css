@@ -26,6 +26,20 @@ html, body {
     z-index: 1000;
 }
 
+
+.logout {
+    position: fixed;
+    left: 50%;
+    right: 50%;
+    margin-right: 25px;
+    width: 50px;
+    top: 5%;
+    height: 25px;
+    z-index: 20;
+    color: blue;
+    text-decoration: underline;
+}
+
 .frame {
     bottom: 5px;
     right: 5px;

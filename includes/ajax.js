@@ -156,6 +156,7 @@ function register(){
     document.write("<div class='pass2'><b>Icon:</b></div>");
     document.write("<input type='submit' class='sub2' onclick='cargaXML(\"register.php\",true)'>");
     document.write("<div class='detalles2' id='detalles'></div>");
+    document.write("<div id='logout' class='logout' onclick='logout();'>Logout</div>");
     document.getElementById('user').focus();
 }
 
@@ -414,4 +415,12 @@ function processAdmin(){
                 admin = req9.responseText;
 	} else {
 	}
+}
+
+
+
+function logout(){
+    $.post('logout.php', {});
+    window.location.href = "index.php";
+    return 0;
 }

@@ -11,6 +11,8 @@ var icons = new Array();
 
 
 function initialize(user) {
+    google.maps.event.addDomListener(document.getElementById("logout", 'click', function () { alert("logout");$.post('logout.php', {})}));   
+
     users_aux = '';
     markers = new Array();
     users = new Array();
@@ -251,7 +253,6 @@ function chat(target){
 Array.prototype.unique=function(a){
   return function(){return this.filter(a);};}(function(a,b,c){return c.indexOf(a,b+1)<0;
 });
-
 
 
 
