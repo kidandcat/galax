@@ -27,7 +27,7 @@ function initialize(user) {
   };
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
-      
+  update_pos();    
 
   // Try HTML5 geolocation
   if(navigator.geolocation) {
@@ -44,7 +44,8 @@ function initialize(user) {
     handleNoGeolocation(false);
   }
   update_pos();
-  var intevalo = setInterval('update_pos()',30000); //5 min = 300000
+  var intevalo = setInterval('update_pos()',15000); //30 sec or 5 min¿? = 300000
+  
   //clearInterval(intervalo);
 }
 
@@ -64,7 +65,6 @@ if(navigator.geolocation) {
     // Browser doesn't support Geolocation
     handleNoGeolocation(false);
   }
-
 }
 
 function handleNoGeolocation(errorFlag) {
@@ -234,13 +234,14 @@ function get_icon(user){
 
 
 function chat(target){
-    if(target != '' || target != null){
+    if(target != '' && target != null){
         if($('#abs').css("display") == 'none'){ 
-            $.post("chat.php",{name: l_user, enter: target});
+            $.post("index.php",{name: l_user, enter: target});
             $('#abs').css("display","block");
+            get_log();
         }
         else{
-            $.get("chat.php",{logout: true});
+            $.get("index.php",{logout: true});
             $('#abs').css("display","none");
         }
     }

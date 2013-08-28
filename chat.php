@@ -57,7 +57,7 @@ target = '$_user_insert'
         $dater = date("Y-n-j H:i:s");
         mysql_query("INSERT INTO chats VALUES ('$_user_insert','$_enter_insert','$logg','$dater','$dater','$dater')");
     }
-    
+    echo $_SESSION["log"];
 }  
 
 
@@ -81,30 +81,17 @@ if(isset($_GET['logout'])){
 
 <html>
     <head>
-        <script>
-        function clicked(){     
-    var clientmsg = $("#usermsg").val();  
-    $.post("post.php", {text: clientmsg});
-    $("#usermsg").attr("value", "");  
-    return false;  
-};  
-        </script>
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="chat.css" rel="stylesheet">
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script type="text/javascript">  
 // jQuery Document  
-var l_log = '<?php 
-            if(isset($_SESSION['log']))
-                echo $_SESSION['log'];
-            else
-                echo "logs/log_default.html";
-        ?>';
+var l_log = null;
 
 $(document).ready(function(){  
     loadLog();
-    setInterval (loadLog, 1500);
+    setInterval(loadLog, 5000);
     //If user wants to end session  
     $("#exit").click(function(){  
         var exit = confirm("Are you sure you want to end the session?");  
@@ -113,30 +100,68 @@ $(document).ready(function(){
   
 });
 //If user submits the form  
+var req10;
+function post(text){
+	//	Usuario inteligente...
+	if (window.XMLHttpRequest) {
+		req10 = new XMLHttpRequest();
+		req10.onreadystatechange = processPost;
+		req10.open("GET", 'post.php'+"?text="+text, true);
+		req10.send();
+	//	...y usuario de Internet Explorer Windows
+	} else if (window.ActiveXObject) {
+		isIE = true;
+		req10 = new ActiveXObject("Microsoft.XMLHTTP");
+		if (req10) {
+			req10.onreadystatechange = processPost;
+			req10.open("GET", 'post.php'+"?text="+text, true);
+                        req10.send();
+		}
+	}
+}
 
+function processPost(){
+	if(req10.readyState === 4){
+	} else {
+	}
+}
+
+function checkSubmit2(e)
+{
+    
+   if(e && e.keyCode == 13)
+   {
+      clicked();
+      alert("check enter");
+   }
+}
+
+function clicked(){
+    alert("click!");
+    var clientmsg = $("#usermsg").val();  
+    post(clientmsg);
+    setTimeout ("loadLog()", 1000);
+    return false;  
+};  
 
 //Load the file containing the chat log  
-function loadLog(){       
+function loadLog(){  
+    alert("load log");
     var oldscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height before the request  
-    $.ajax({  
-        url: l_log,  
-        cache: false,  
-        success: function(html){          
-            $("#chatbox").html(html); //Insert chat log into the #chatbox div     
+    $("#chatbox").load(l_log,null,function(){      
+            //Insert chat log into the #chatbox div     
               
             //Auto-scroll             
             var newscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height after the request  
             if(newscrollHeight > oldscrollHeight){  
                 $("#chatbox").animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div  
             }                 
-        },  
     });  
 }  
 
-</script> 
-<?php
 
-?>
+
+</script> 
     </head>
     <body onload="$('#usermsg').focus()">
 <div id="wrapper">  
@@ -159,10 +184,10 @@ if(file_exists($_SESSION["log"]) && filesize($_SESSION["log"]) > 0){
 }  
 ?></div>  
       
-    <form name="message" action="">  
-        <input name="usermsg" type="text" id="usermsg" size="63" />  
-        <input name="submitmsg" type="submit" onclick="clicked()" id="submitmsg" value="Send" />  
-    </form>  
+  
+        <input name="usermsg" type="text" id="usermsg" onkeypress="checkSubmit2()" size="63" />  
+        <input name="submitmsg" type="button" onclick="clicked()" id="submitmsg" value="Send" />  
+ 
 </div>  
     </body>
 

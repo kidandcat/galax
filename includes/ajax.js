@@ -261,7 +261,6 @@ function processPos(){
 
 
 function check(){
-    check_chat();
 	//	Usuario inteligente...
 	if (window.XMLHttpRequest) {
 		req7 = new XMLHttpRequest();
@@ -278,6 +277,7 @@ function check(){
                         req7.send();
 		}
 	}
+        check_chat();
 }
 
 
@@ -421,6 +421,14 @@ function processAdmin(){
 
 function logout(){
     $.post('logout.php', {});
-    window.location.href = "index.php";
+    $('#logout').css('color','green');
+    setInterval('logoutt()',5000);
     return 0;
 }
+
+function logoutt(){
+    window.location.href = "index.php";
+}
+
+
+

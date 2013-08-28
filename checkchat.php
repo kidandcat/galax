@@ -3,7 +3,10 @@ session_start();
 
 $link = mysql_connect("localhost", "root", "akatsuki");
     mysql_select_db("galax", $link);
-    $_user_insert = $_SESSION["user"];
+    if(isset($_SESSION["user"]))
+        $_user_insert = $_SESSION["user"];
+    else
+        $_user_insert = 'Anon';
 
     $result1 = mysql_query("SELECT
 chats.`user`,

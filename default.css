@@ -142,6 +142,26 @@ html, body {
   border: 1px solid #999;
 }
 
+
+
+/* 
+    Document   : chat
+    Created on : 16-ago-2013, 12:28:51
+    Author     : maria jesus
+    Description:
+        Purpose of the stylesheet follows.
+*/
+/* CSS Document */  
+body {  
+    font:12px arial;  
+    color: #222;  
+    text-align:center;  
+    padding:5px; }  
+   
+form, p, span {  
+    margin:0;  
+    padding:0; }  
+   
 input { font:12px arial; }  
    
 a {  
@@ -152,9 +172,9 @@ a {
    
 #wrapper, #loginform {  
     margin:0 auto;  
-    padding-bottom:25px;  
+    padding-bottom:5px;  
     background:#EBF4FB;  
-    width:504px;  
+    width:250px;  
     border:1px solid #ACD8F0; }  
    
 #loginform { padding-top:18px; }  
@@ -167,13 +187,13 @@ a {
     margin-bottom:25px;  
     padding:10px;  
     background:#fff;  
-    height:270px;  
-    width:430px;  
+    height:135px;  
+    width:215px;  
     border:1px solid #ACD8F0;  
     overflow:auto; }  
    
 #usermsg {  
-    width:395px;  
+    width:185px;  
     border:1px solid #ACD8F0; }  
    
 #submit { width: 60px; }  

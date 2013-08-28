@@ -1,11 +1,11 @@
 <?php  
 session_start();  
-if(isset($_SESSION['name'])){  
-    $text = $_POST['text'];  
+if(isset($_SESSION['user'])){  
+    $text = $_GET['text'];  
     $link = mysql_connect("localhost", "root", "akatsuki"); 
     mysql_select_db("galax", $link); 
       
-    $user = $_SESSION['name'];
+    $user = $_SESSION['user'];
     $target = $_SESSION['enter'];
     $now = date("Y-n-j H:i:s"); 
     mysql_query("UPDATE chats SET last_access='$now' WHERE user='$user' AND target='$target'");
@@ -23,7 +23,7 @@ if(isset($_SESSION['name'])){
     //http://www.forosdelweb.com/f18/fopen-anadir-principio-873176/
       
     //guardo en una variable el nuevo texto
-    $a = "<div class='msgln'>(".date("g:i A").") <b>".$_SESSION['name']."</b>: ".stripslashes(htmlspecialchars($text))."<br></div>";
+    $a = "<div class='msgln'>(".date("g:i A").") <b>".$_SESSION['user']."</b>: ".stripslashes($text)."<br></div>";
     //guardo en otra variable el contenido actual
     $get = file_get_contents($_SESSION["log"]);
     //creo una variable con el nuevo+actual
@@ -34,5 +34,6 @@ if(isset($_SESSION['name'])){
     $control = fopen($_SESSION["log"],"c");
     $write = fwrite($control, $t);
     fclose($control);  
+    echo $text;
 }  
 ?> 
