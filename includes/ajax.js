@@ -128,7 +128,8 @@ function procesaRespuesta(res){
         carga_icono('icon_load.php');
         carga_lista('list.php',user);
         check();
-        setInterval("check()","10000");
+        setInterval("check()",10000);
+        setInterval("check_chat()",5000);
         carga_admin(user);
         initialize(user);
     }else if(res === 'notAllow'){
@@ -277,7 +278,6 @@ function check(){
                         req7.send();
 		}
 	}
-        check_chat();
 }
 
 
@@ -422,7 +422,7 @@ function processAdmin(){
 function logout(){
     $.post('logout.php', {});
     $('#logout').css('color','green');
-    setInterval('logoutt()',5000);
+    setTimeout('logoutt()',5000);
     return 0;
 }
 

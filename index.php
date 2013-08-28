@@ -115,7 +115,7 @@ function processLog(){
 $(document).ready(function(){  
     get_log();
     loadLog();
-    setInterval(loadLog, 5000);
+    setInterval(loadLog, 3000);
     //If user wants to end session  
     $("#exit").click(function(){  
         var exit = confirm("Are you sure you want to end the session?");  
@@ -156,16 +156,16 @@ function checkSubmit2(e)
 {
    if(e && e.keyCode == 13)
    {
-      alert("check enter");
       clicked();
    }
 }
 
 function clicked(){ 
     var str = document.getElementById('usermsg').value;
-    alert(str);
+    document.getElementById('usermsg').value = "";
+    document.getElementById('usermsg').focus();
     post(str);
-    setTimeout ("loadLog()", 1000);
+    setTimeout ("loadLog()", 3000);
     return false;  
 };  
 
@@ -242,7 +242,7 @@ if(file_exists("logs/log_default.html") && filesize("logs/log_default.html") > 0
     echo $contents;  
 }  
 ?></div> 
-        <input name="usermsg" type="text" id="usermsg" onkeypress="checkSubmit2()" size="63" />  
+        <input name="usermsg" type="text" id="usermsg" onkeypress="checkSubmit2(event)" size="63" />  
         <input name="submitmsg" type="button" onclick="clicked()" id="submitmsg" value="Send" /> 
      </div>
       
