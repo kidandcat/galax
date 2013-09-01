@@ -9,10 +9,17 @@ mysql_select_db("galax", $link);
 
 $pass2 = md5($pass);
 $time = date("Y-n-j H:i:s");
-
-if($icon == '' || $icon == null)
+if($icon == '' || $icon == null){
     $icon = 'images/icon.png';
+}else{
+    $icon2 = explode("fakepath", $icon);
+    $icon = "images\/".$icon2[1];
+}
 
-$va = mysql_query("INSERT INTO main VALUES ('$user','undefined undefined','$pass2','0','0','0','$icon','$time')");
-echo 'registered'.$va;
+if($user != ''){
+    $va = mysql_query("INSERT INTO main VALUES ('$user','undefined undefined','$pass2','0','0','0','$icon','$time')");
+    echo 'registered'.$va;
+}else{
+    echo 'nameNotAllowed';
+}
 ?>

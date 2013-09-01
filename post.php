@@ -2,6 +2,7 @@
 session_start();  
 if(isset($_SESSION['user'])){  
     $text = $_GET['text'];  
+    if($text != '' && $text != null){
     $link = mysql_connect("localhost", "root", "akatsuki"); 
     mysql_select_db("galax", $link); 
       
@@ -36,4 +37,5 @@ if(isset($_SESSION['user'])){
     fclose($control);  
     echo $text;
 }  
+}
 ?> 

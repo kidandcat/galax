@@ -34,15 +34,14 @@ target = '$_user_insert'
     
     $now = date("Y-n-j H:i:s"); 
     
-    $new_msg = 'false';
-    if($val1 = mysql_fetch_array($result1)){
-        if((strtotime($val1[3]) < strtotime($val1[2]))){
-            $new_msg = $val1[1];
+    $new_msg = '';
+    while($val1 = mysql_fetch_array($result1)){
+        if((strtotime($val1[3]) < strtotime($val1[2])))
+            $new_msg = $new_msg." ".$val1[1];
        }
-    }else if($val2 = mysql_fetch_array($result2)){
-        if((strtotime($val2[4]) < strtotime($val2[2]))){
-            $new_msg = $val2[0];
-        }
+    while($val2 = mysql_fetch_array($result2)){
+        if((strtotime($val2[4]) < strtotime($val2[2])))
+            $new_msg = $new_msg." ".$val2[0];
     }
         mysql_query("UPDATE chats SET last_check_first_user='$now' WHERE user='$_user_insert'");
         mysql_query("UPDATE chats SET last_check_second_user='$now' WHERE target='$_user_insert'");

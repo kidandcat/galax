@@ -52,16 +52,17 @@ function cargaXML(url,register) {
 	}
         user = $('#user').val();
         var password = $('#pass').val();
-        var icon = $('#pass2').val();
+        /*var icon = $('#pass2').val();
         if(icon === ''){
-            icon = 'images/icon.png';
+            l_icon = 'images/icon.png';
         }else{
-            l_icon = icon;
+            l_icon = icon[0];
         }
         var img = new Image();
         img.src = l_icon;
-        img.onerror = function(){
-            var iconn = 'images/icon.png';
+        img.onerror = function(){*/
+            //var iconn = 'images/icon.png';
+            var iconn = $('#pass2').val();
             detalles.innerHTML = detalles.innerHTML + "<br>Error loading icon, using default"
 	//	Usuario inteligente...
 	if (window.XMLHttpRequest) {
@@ -80,9 +81,9 @@ function cargaXML(url,register) {
 		}
 	}
         };
-        img.onload = function(){
+        /*img.onload = function(){
          var tam = '';
-            if(this.height > 40){
+            /*if(this.height > 40){
                 icon = 'images/icon.png';
                 tam = 'height';
             }else if(this.width > 40){
@@ -110,7 +111,7 @@ function cargaXML(url,register) {
 		}
 	}
         };
-    }
+    }*/
 }
 
 //	Funcion que se llama cada vez que se dispara el evento onreadystatechange
@@ -133,12 +134,14 @@ function procesaRespuesta(res){
         carga_admin(user);
         initialize(user);
     }else if(res === 'notAllow'){
-        detalles.innerHTML = '<br>Wrong user/password.';
+        detalles.innerHTML = '<br>Wrong user/password.</br>';
     }else if(res === 'registered1'){
-        detalles.innerHTML = detalles.innerHTML + '<br>Registered succesfully';
+        detalles.innerHTML = detalles.innerHTML + '<br>Registered succesfully</br>';
         setTimeout(function(){document.location.href = document.location.href},1500);
     }else if(res === 'registered'){
-        detalles.innerHTML = '<br>User already exists.';
+        detalles.innerHTML = '<br>User already exists.</br>';
+    }else if(res === 'nameNotAllowed'){
+        detalles.innerHTML = '<br>Name not allowed</br>';
     }else{
         alert('Error: please, if the error persists contact the administrator.');
         document.location.href = document.location.href;
@@ -147,18 +150,22 @@ function procesaRespuesta(res){
 
 
 function register(){
+    
     //document.write("<?php session_start(); ?>");  //sobra? creo que si -kidandcat
     document.write("<link href='default.css' rel='stylesheet'>");
     document.write("<input name='user' class='input' id='user' type='text'>");
     document.write("<input name='pass' class='input2' id='pass' type='password'>");
     document.write("<div class='user'><b>Nickname:</b></div>");
     document.write("<div class='pass'><b>Password:</b></div>");
-    document.write("<input name='passRepeat' class='input3' id='pass2' type='text'>");
+    //document.write("<input name='passRepeat' class='input3' id='pass2' type='text'>");
+    document.write('<input type="file" class="input3" id="pass2" name="images[]" />');
+    document.write('<ul id="lista-imagenes"></ul>');
     document.write("<div class='pass2'><b>Icon:</b></div>");
-    document.write("<input type='submit' class='sub2' onclick='cargaXML(\"register.php\",true)'>");
+    document.write("<input type='submit' id ='buttton' class='sub2' cargaXML(\"register.php\",true)>");
     document.write("<div class='detalles2' id='detalles'></div>");
     document.write("<div id='logout' class='logout' onclick='logout();'>Logout</div>");
     document.getElementById('user').focus();
+    upload();
 }
 
 
@@ -310,7 +317,7 @@ function check_chat(){
 
 function checkRes2(){
 	if(req8.readyState === 4){  //must do all same methods alert about the correct or incorrect done of the action-------------------------------------------
-            if(req8.responseText == 'false'){
+            if(req8.responseText == ''){
             }else{
                 new_msg_from(req8.responseText);
             }
@@ -427,6 +434,7 @@ function logout(){
 }
 
 function logoutt(){
+    user = '';
     window.location.href = "index.php";
 }
 

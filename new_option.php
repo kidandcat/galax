@@ -10,6 +10,7 @@ mysql_select_db("galax", $link);
 $data2 = explode(";",$data);
 $data3 = $data2[0];
 $data4 = $data2[1];
+$delete = $data2[2];
 
 $result = mysql_query("SELECT
 main.`user`,
@@ -24,7 +25,11 @@ while($val = mysql_fetch_array($result)){
         $resu = $val[1];
 }
 if($resu > 0){
-    $res = mysql_query("INSERT INTO options VALUES ('$data3','$data4')");
+    if(isset($delete) && $delete == 'delete'){
+        $res = mysql_query("UPDATE options SET options='' WHERE options='$data3'");
+        $res += mysql_query("UPDATE options SET specialty='' WHERE specialty='$data4'");
+    }else
+        $res = mysql_query("INSERT INTO options VALUES ('$data3','$data4')");
 }
 echo $res;
 ?>

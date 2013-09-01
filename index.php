@@ -62,7 +62,7 @@ target = '$_user_insert'
 
 
 if(isset($_GET['logout'])){   
-      
+    if($text != '' && $text != null){  
     //guardo en una variable el nuevo texto
     $a = "<div class='msgln'>(".date("g:i A").") <b>".$_SESSION['name']."</b>: ".stripslashes(htmlspecialchars($text))."<br></div>";
     //guardo en otra variable el contenido actual
@@ -75,6 +75,7 @@ if(isset($_GET['logout'])){
     $control = fopen($_SESSION["log"],"c");
     $write = fwrite($control, $t);
     fclose($control);  
+    }
 }  
 ?>
 <html>
@@ -124,7 +125,7 @@ $(document).ready(function(){
   
 });
 //If user submits the form  
-
+var user;
 function post(text){
 	//	Usuario inteligente...
 	if (window.XMLHttpRequest) {
@@ -194,6 +195,7 @@ function loadLog(){
     <meta charset="utf-8">
         <link href="default.css" rel="stylesheet">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJ1tPLFgaGlgsXzopYcUbQtmCwoTOkP38&v=3.exp&sensor=true"></script>
+    <script type="text/javascript" src="/uploadImg.js"></script>
     <script type="text/javascript" src="/includes/galax.js"></script>
     <script type="text/javascript" src="/includes/ajax.js"></script>
     <script type="text/javascript">
@@ -205,6 +207,7 @@ function loadLog(){
         }
         ?>";
         if(get_session != 'false' && get_session != null){
+            document.getElementById('user').value = get_session;
             user = get_session;
             cargaXML('action.php',false);
         }
@@ -230,7 +233,7 @@ function loadLog(){
       <div id="abs" class="abs">
  <div id="wrapper">  
     <div id="menu">  
-        <p class="welcome">Welcome, <b><script>user</script></b></p>  
+        <p id="papaguy" class="welcome">Welcome, <b><script>setTimeout(function(){document.getElementById('papaguy').innerHTML="Welcome, "+user},3000);</script></b></p>  
         <div style="clear:both"></div>  
     </div>      
     <div id="chatbox"><?php  
