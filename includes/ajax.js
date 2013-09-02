@@ -161,7 +161,7 @@ function register(){
     document.write('<input type="file" class="input3" id="pass2" name="images[]" />');
     document.write('<ul id="lista-imagenes"></ul>');
     document.write("<div class='pass2'><b>Icon:</b></div>");
-    document.write("<input type='submit' id ='buttton' class='sub2' cargaXML(\"register.php\",true)>");
+    document.write("<input type='submit' id ='buttton' class='sub2' onclick='cargaXML(\"register.php\",true)'>");
     document.write("<div class='detalles2' id='detalles'></div>");
     document.write("<div id='logout' class='logout' onclick='logout();'>Logout</div>");
     document.getElementById('user').focus();
