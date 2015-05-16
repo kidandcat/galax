@@ -1,5 +1,7 @@
 <?php  
 session_start();  
+
+
 if(isset($_SESSION['user'])){  
     $text = $_GET['text'];  
     if($text != '' && $text != null){
