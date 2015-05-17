@@ -1,7 +1,4 @@
-qdsd
-qsd
-qd
-q
+
 qsd
 qs
 dq
