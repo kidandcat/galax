@@ -1,4 +1,7 @@
-qsdq
+qw
+dq
+dwq
+dqsdq
 sdq
 ds
 as
